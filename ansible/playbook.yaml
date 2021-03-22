@@ -1,0 +1,17 @@
+- name: install kubectl
+  become: true
+  hosts: node-1
+  roles:
+  - kubectl
+
+- name: install kubectl
+  become: true
+  hosts: node-2
+  roles:
+  - kubectl
+
+- name: install kubectl
+  become: true
+  hosts: node-3
+  roles:
+  - kubectl
