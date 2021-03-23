@@ -1,0 +1,15 @@
+- name: Download the aws-eks-ctl repository.
+  shell: curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+  
+
+- name: Move the extracted repository
+  shell: sudo mv /tmp/eksctl /usr/local/bin
+
+
+- name: Check the aws-eks-cli version
+  shell: eksctl version
+  register: aws_eks_cli_version
+
+- name: Print Aws-Eks-Ctl Version
+  debug:
+    var: aws_eks_cli_version.stdout

@@ -2,3 +2,13 @@
   snap:
     name: kubectl
     classic: yes
+
+
+- name: kubectl Version
+  shell: kubectl version --client
+  register: kubectl_version
+
+
+- name: Print kubectl Version
+  debug:
+    var: kubectl_version.stdout

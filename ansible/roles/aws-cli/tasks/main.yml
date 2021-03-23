@@ -1,0 +1,33 @@
+- name: Install Unzip Package
+  apt:
+    pkg:
+    - unzip
+    update_cache: true
+
+
+- name: Download the aws-cli bundle.
+  get_url: url=https://s3.amazonaws.com/aws-cli/awscli-bundle.zip dest=/tmp/awscli-bundle.zip
+  register: aws_cli_download_bundle
+
+
+- name: Unarchive the aws-cli installer.
+  unarchive: src=/tmp/awscli-bundle.zip dest=/tmp copy=no creates=/tmp/awscli-bundle
+  when: aws_cli_download_bundle.changed
+  register: aws_cli_unarchive_installer
+
+
+- name: Install the aws-cli package.
+  shell: python /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/bin/aws
+  args:
+    creates: /usr/bin/aws
+  when: aws_cli_unarchive_installer.changed
+
+
+- name: AWS-CLI Version
+  shell: aws --version
+  register: aws_cli_version
+
+
+- name: Print Aws-Cli Version
+  debug:
+    var: aws_cli_version.stdout

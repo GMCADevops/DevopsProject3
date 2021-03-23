@@ -1,4 +1,3 @@
-# tasks file for jenkins
 - name: install wget
   apt:
     name: wget

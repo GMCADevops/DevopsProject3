@@ -29,4 +29,6 @@
   - name: install and configure jenkins on localhost
   hosts: localhost
   roles:
-  - jenkins
+  - ping
+  - aws-cli
+  - aws-eks-ctl
