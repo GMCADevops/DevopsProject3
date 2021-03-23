@@ -1,24 +1,32 @@
-- name: install jenkins and kubectl
+- name: install kubectl on CI/CD server
   become: true
   hosts: localhost
   roles:
+  - ping 
   - kubectl
-  - jenkins
 
-- name: install kubectl
+- name: install kubectl on node-1
   become: true
   hosts: node-1
   roles:
+  - ping 
   - kubectl
 
-- name: install kubectl
+- name: install kubectl on node-2
   become: true
   hosts: node-2
   roles:
+  - ping 
   - kubectl
 
-- name: install kubectl
+- name: install kubectl on node-3
   become: true
   hosts: node-3
   roles:
+  - ping 
   - kubectl
+
+  - name: install and configure jenkins on localhost
+  hosts: localhost
+  roles:
+  - jenkins

@@ -4,22 +4,26 @@
     name: wget
     state: present
 
+
 - name: install openjdk
   apt:
-    update_cache: yes
+    update_cache: no
     name: openjdk-11-jdk
     state: present
+
 
 - name: import jenkins key
   apt_key:
     state: present
     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
 
+
 - name: ensure the repository is configured
   apt_repository:
     repo : deb https://pkg.jenkins.io/debian-stable binary/
     state: present
     update_cache: yes
+
 
 - name: install jenkins
   apt:
@@ -32,20 +36,24 @@
     name: jenkins
     state: started
 
+
 - name: enable jenkins
   systemd:
     name: jenkins
     enabled: true
 
+
 - name: sleep for 10 seconds and continue with play
   wait_for: timeout=10
   delegate_to: localhost
+
 
 - name: init password jenkin
   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
   changed_when: false
   register: result
 
-- name: print init password jenkins
+
+- name: print init admin password for jenkins
   debug:
     var: result.stdout
