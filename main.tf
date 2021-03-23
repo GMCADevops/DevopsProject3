@@ -74,49 +74,70 @@ module "eks" {
 }
 
 # -------------------------------------
+resource "aws_vpc" "prod-vpc" {
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    Name = "production"
+  }
+}
 
 resource "aws_subnet" "my_subnet" {
-  vpc_id            = module.vpc.vpc_id
-  cidr_block        = "172.16.7.0/24"
+  vpc_id            = aws_vpc.prod-vpc.id
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "eu-west-2a"
 
-  tags = {
-    Name = "tf-example"
-  }
 }
 
 resource "aws_network_interface" "jenkins" {
   subnet_id   = aws_subnet.my_subnet.id
-  private_ips = ["172.16.7.100"]
-  tags = {
-    Name = "primary_network_interface"
-  }
+  private_ips = ["10.0.1.100"]
+  security_groups = [aws_security_group.allow_web.id]
 }
 
 resource "aws_network_interface" "bastion" {
   subnet_id   = aws_subnet.my_subnet.id
-  private_ips = ["172.16.7.101"]
+  private_ips = ["10.0.1.101"]
+  security_groups = [aws_security_group.allow_web.id]
+}
 
-  tags = {
-    Name = "primary_network_interface"
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.prod-vpc.id
+}
+
+resource "aws_eip" "jenkins" {
+  vpc                       = true
+  network_interface         = aws_network_interface.jenkins.id
+  associate_with_private_ip = "10.0.1.100"
+  depends_on                = [aws_internet_gateway.gw]
+}
+
+resource "aws_eip" "bastion" {
+  vpc                       = true
+  network_interface         = aws_network_interface.bastion.id
+  associate_with_private_ip = "10.0.1.101"
+  depends_on                = [aws_internet_gateway.gw]
+}
+
+resource "aws_route_table" "prod-route-table" {
+  vpc_id = aws_vpc.prod-vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
   }
+  route {
+     ipv6_cidr_block = "::/0"
+     gateway_id      = aws_internet_gateway.gw.id
+   }
+ }
+ 
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.my_subnet.id
+  route_table_id = aws_route_table.prod-route-table.id
 }
-
-resource "aws_network_interface_sg_attachment" "bastion" {
-  security_group_id = aws_security_group.allow_web.id
-  network_interface_id = aws_instance.bastion.primary_network_interface_id
-}
-
-resource "aws_network_interface_sg_attachment" "jenkins" {
-  security_group_id = aws_security_group.allow_web.id
-  network_interface_id = aws_instance.jenkins.primary_network_interface_id
-}
-
 resource "aws_instance" "jenkins" {
   ami           = "ami-096cb92bb3580c759"
   instance_type = "t2.micro"
   key_name      = "jenkins"
-
   network_interface {
     network_interface_id = aws_network_interface.jenkins.id
     device_index         = 0
@@ -131,7 +152,6 @@ resource "aws_instance" "bastion" {
   ami           = "ami-096cb92bb3580c759"
   instance_type = "t2.micro"
   key_name      = "bastion"
-
   network_interface {
     network_interface_id = aws_network_interface.bastion.id
     device_index         = 0
@@ -145,8 +165,8 @@ resource "aws_instance" "bastion" {
 resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
   description = "Allow Web inbound traffic"
-  vpc_id      = module.vpc.vpc_id
-  ingress {
+  vpc_id      = aws_vpc.prod-vpc.id
+    ingress {
     description = "HTTPS"
     from_port   = 443
     to_port     = 443
@@ -154,9 +174,9 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-  description = "Jenkins"
-    from_port   = 8080
-    to_port     = 8080
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -167,7 +187,20 @@ resource "aws_security_group" "allow_web" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = {
-    Name = "allow jenkins/ssh"
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "allow_web"
+  }
+}
+
+output "server_public_ip_bastion" {
+  value = aws_eip.bastion.public_ip
+}
+output "server_public_ip_jenkins" {
+  value = aws_eip.jenkins.public_ip
 }
