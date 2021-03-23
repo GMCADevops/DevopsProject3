@@ -1,8 +1,8 @@
 all:
   children:
-    kubectl:
+    localhost:
       hosts:
-        10.154.0.23: #local vm ip address
+        10.154.0.30: #local vm ip address
     node-1:
       hosts:      
         10.154.0.27: #node 1 
@@ -15,5 +15,5 @@ all:
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: d_walker0357 #username if using jenkins use jenkins
-    ansible_ssh_private_key_file: '~/.ssh/id_rsa_bastion.pem' # copied private rsa key from the bastion server
+    ansible_ssh_private_key_file: '~/.ssh/id_rsa_bastion' # copied private rsa key from the bastion server
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q d_walker0357@10.154.0.29"' #user@bastion-ip

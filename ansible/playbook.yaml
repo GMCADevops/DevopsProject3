@@ -1,3 +1,10 @@
+- name: install jenkins and kubectl
+  become: true
+  hosts: localhost
+  roles:
+  - kubectl
+  - jenkins
+
 - name: install kubectl
   become: true
   hosts: node-1
