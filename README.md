@@ -32,45 +32,45 @@ It will then display the installed version of Aws-cli as an ansible variable.
 • Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
 <br>
 <br>
-<h2> Ansible infrastructure diagram</h2>
+<h2> Ansible infrastructure diagram:</h2>
+
+![](https://i.gyazo.com/555ce2241919aef258daf67a670e3e59.png)
 
 
 
-
-
-<h2> Pinging for packet exchange </h2>
+<h2> Pinging for packet exchange: </h2>
 
 ![](https://i.gyazo.com/9dc5dd7675f59e7c74c8573402c2a362.png)
 
-<h2>Checking bash shell access</h2>
+<h2>Checking bash shell access:</h2>
 
 ![](https://i.gyazo.com/98536edf02041b8cfa018ff07a1dff0f.png)
 
-<h2>Install kubectl package</h2>
+<h2>Install kubectl package:</h2>
 
 ![](https://i.gyazo.com/f86737e01cd03cd7f01234928c8bac5d.png)
 
-<h2>Checking installed kubectl package version</h2>
+<h2>Checking installed kubectl package version:</h2>
 
 ![](https://i.gyazo.com/cb59342797904d3b35907acf238358f8.png)
 
-<h2>Installing java openjdk dependency package</h2>
+<h2>Installing java openjdk dependency package:</h2>
 
 ![](https://i.gyazo.com/508abbde02cf6e3b9625a3827644bab6.png)
 
-<h2>Install configure and start jenkins</h2>
+<h2>Install configure and start jenkins:</h2>
 
 ![](https://i.gyazo.com/53be6f149a8c9739cb46e64290818a43.png)
 
-<h2>Retrive and display the jenkins init admin password</h2>
+<h2>Retrive and display the jenkins init admin password:</h2>
 
 ![](https://i.gyazo.com/c49ae6d3892903fa98dbf30ff610b4ad.png)
 
-<h2>Install aws-cli package</h2>
+<h2>Install aws-cli package:</h2>
 
 ![](https://i.gyazo.com/0717c68885d5346ad760c7127a86e3d5.png)
 
-<h2>Checking  installed aws-cli package version</h2>
+<h2>Checking  installed aws-cli package version:</h2>
 
 ![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
 
