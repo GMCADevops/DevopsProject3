@@ -18,18 +18,18 @@ This command allows us to proxy ssh throught the specified bastion ip address as
 <br>
 We used ansible galaxy roles to define our configuration settings the roles used were:
 
-- Ping - The ping role is configured to ping the ansible host and check for the response "pong" and a hello from "external ip address of host" to display via ansible variable, This will comfirm the successful exchange of packets and access to the virutal machine bash shell.
+• Ping - The ping role is configured to ping the ansible host and check for the response "pong" and a hello from "external ip address of host" to display via ansible variable, This will comfirm the successful exchange of packets and access to the virutal machine bash shell.
 <br>
 <br>
-- Kubectl - The kubectl role is configured to install the kubernetes kubectl package on each cluster node as well as the ci-cd server to allow infrastructure wide kubernetes cluster access management.
+• Kubectl - The kubectl role is configured to install the kubernetes kubectl package on each cluster node as well as the ci-cd server to allow infrastructure wide kubernetes cluster access management.
 It will then display the installed version of kubectl as an ansible variable.
 <br>
 <br>
-- Aws-cli - The Aws-cli role is configured to install the amazon-web-services command line interface onto the ci-cd server to allow programmatic access via iam user to the virutal private cloud(vpc).
+• Aws-cli - The Aws-cli role is configured to install the amazon-web-services command line interface onto the ci-cd server to allow programmatic access via iam user to the virutal private cloud(vpc).
 It will then display the installed version of Aws-cli as an ansible variable.
 <br>
 <br>
-- Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
+• Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
 <br>
 <br>
 <h2> Ansible infrastructure diagram</h2>
