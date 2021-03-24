@@ -18,6 +18,7 @@ provider "kubernetes" {
 }
 
 data "aws_availability_zones" "available" {
+  
 }
 
 locals {
@@ -74,6 +75,8 @@ module "eks" {
 
 module "vpc_instances" {
   source = "./vpc"
+  prod-vpc = module.vpc.vpc_id
+  internet_gate = module.vpc.igw_id
 }
 module "instance" {
   source = "./instance"
@@ -82,8 +85,9 @@ module "instance" {
 }
 module "subnet" {
   source = "./subnet"
-  vpc_id = module.vpc_instances.vpc_id
+  vpc_id = module.vpc.vpc_id
+  vpc = module.vpc
   route_id = module.vpc_instances.route_id
   sec_group_id = module.vpc_instances.sec_group_id
-  internet_gate   = module.vpc_instances.internet_gate
+  internet_gate = module.vpc.igw_id
 }
