@@ -1,30 +1,19 @@
-resource "aws_vpc" "prod-vpc" {
-  cidr_block = "10.0.0.0/16"
-  tags = {
-    Name = "production"
-  }
-}
-
-resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.prod-vpc.id
-}
-
 resource "aws_route_table" "prod-route-table" {
-  vpc_id = aws_vpc.prod-vpc.id
+  vpc_id = var.prod-vpc
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = var.internet_gate
   }
   route {
      ipv6_cidr_block = "::/0"
-     gateway_id      = aws_internet_gateway.gw.id
+     gateway_id      = var.internet_gate
    }
  }
 
  resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
   description = "Allow Web inbound traffic"
-  vpc_id      = aws_vpc.prod-vpc.id
+  vpc_id      = var.prod-vpc
     ingress {
     description = "HTTPS"
     from_port   = 443
@@ -33,9 +22,9 @@ resource "aws_route_table" "prod-route-table" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
+    description = "Jenkins"
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
