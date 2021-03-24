@@ -1,10 +1,10 @@
 - name: Ping Server for packet exchange
   ansible.builtin.ping:
 
-- name: Response from Server
+- name: Bash Shell Response from Server
   shell: echo Hello from $(curl ifconfig.me)
   register: result
 
-- name: print respone
+- name: Print Bash Respone
   debug:
     var: result.stdout
