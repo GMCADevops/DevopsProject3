@@ -17,7 +17,7 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchData = async () => {
 
-        const response = await fetch("/profile" ,{
+        const response = await fetch("/backend/profile" ,{
             method: 'GET',
             headers : {
                 "Authorization": Cookies.get("login")

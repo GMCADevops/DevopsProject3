@@ -23,7 +23,7 @@ export const Movies = ({movies}) => {
                             <Icon name='save' />
                         </Button>
                         <Button icon onClick={async() => {
-                            const response = await fetch('/movies/1',{method: 'DELETE'});
+                            const response = await fetch('/backend/movies/1',{method: 'DELETE'});
                                 if (response.ok) {
                                     console.log("200")
                                     window.location.reload(true);

@@ -14,7 +14,7 @@ export const LoginPage = () => {
 
         formData.append('username', data.username);
         formData.append('password', data.password);
-        const response = await fetch('/token',{method: 'POST', body: formData});
+        const response = await fetch('/backend/token',{method: 'POST', body: formData});
             if (response.ok) {
                 let token = await response.json();
                 Cookies.set('login', token.token_type + " " + token.access_token, { sameSite: 'strict' })

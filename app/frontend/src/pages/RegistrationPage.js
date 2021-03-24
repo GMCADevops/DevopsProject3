@@ -12,7 +12,7 @@ export const RegistrationPage = () => {
 
   const onSubmit = async(data)  => {
           console.log(data)
-          const response = await fetch('/users/',
+          const response = await fetch('/backend/users/',
           {method: 'POST', headers : {'Content-Type':'application/json'}, body: JSON.stringify(data)});
               if (response.ok) {
                 console.log("200");

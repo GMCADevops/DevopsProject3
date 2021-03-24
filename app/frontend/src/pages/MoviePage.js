@@ -18,7 +18,7 @@ const MoviePage = () => {
     useEffect(() => {
       const fetchData = async () => {
 
-        const response = await fetch("/movies/" + Cookies.get("id") + "/" ,{
+        const response = await fetch("/backend/movies/" + Cookies.get("id") + "/" ,{
           method: 'GET',
           headers : {
               "Authorization": Cookies.get("login")

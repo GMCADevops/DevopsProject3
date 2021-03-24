@@ -8,7 +8,7 @@ export const ProfileForm = () => {
     const {control, handleSubmit} = useForm();
     const onSubmit1 = async(data)  => {
         console.log(data)
-        const response = await fetch('/profile/edit',
+        const response = await fetch('backend/profile/edit',
         {method: 'POST', headers : {'Content-Type':'application/json', "Authorization": Cookies.get("login")}
         , body: JSON.stringify(data)});
             if (response.ok) {

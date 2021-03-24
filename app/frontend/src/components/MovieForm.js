@@ -27,7 +27,7 @@ export const MovieForm = ({onNewMovie}) => {
                             if (title.length >= 2 && description.length > 10){
                                 const movie = {title, rating, description, release, genre}
                                 console.log(movie)
-                                const response = await fetch('/users/' + Cookies.get("id") + '/movies/',
+                                const response = await fetch('/backend/users/' + Cookies.get("id") + '/movies/',
                                 {method: 'POST', headers : {'Content-Type':'application/json'}, body: JSON.stringify(movie)});
                                     if (response.ok) {
                                         console.log("200");
