@@ -16,6 +16,11 @@ ProxyCommand="ssh -W %h:%p -q user@bastion ip address"
 This command allows us to proxy ssh throught the specified bastion ip address as the specified user on the condition that we have the correct path for the private key of the bastion server set as a variable.
 <br>
 <br>
+
+<h2> Ansible infrastructure diagram:</h2>
+
+![](https://i.gyazo.com/71dc632d80a2600b0d27cbad32d82926.png)
+
 We used ansible galaxy roles to define our configuration settings the roles used were:
 
 • Ping - The ping role is configured to ping the ansible host and check for the response "pong" and a hello from "external ip address of host" to display via ansible variable, This will comfirm the successful exchange of packets and access to the virutal machine bash shell.
@@ -32,11 +37,6 @@ It will then display the installed version of Aws-cli as an ansible variable.
 • Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
 <br>
 <br>
-<h2> Ansible infrastructure diagram:</h2>
-
-![](https://i.gyazo.com/555ce2241919aef258daf67a670e3e59.png)
-
-
 
 <h2> Pinging for packet exchange: </h2>
 
