@@ -28,22 +28,26 @@ We are going to deploy two applications using Kubernetes.
 In order for this pod to communicate with the rest of the components of the cluster, we will create an internal service called backend-service.
 
 ***Service - Backend***
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/282x288/26e92c5efc71b5eff289982ca3ed66af/backend_service.png)
 
 
 2) We will do the same with our frontend application. Firstly, we will create a pod: 
 
 ***Deployment / Pod - Frontend***
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/378x559/914654b19c4654b2b0477cce6db7f683/frontend_pod.png)
 
 Secondly, we will create an internal service (frontend - service) to allow this pod to communicate with the rest of the cluster.
 
 ***Service - Frontend***
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/280x289/de44732d84675ab93997f6f3f13bb6ea/frontend_service.png)
 
 3) The NGINX pod will be the component that joins the frontend application and the backend application.
 
 ***Deployment / Pod - Nginx***
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/421x643/8ae3bec2d4a745ecf674c8b77ca98061/nginx_pod.png)
 
 All HTTP requests will go through the NGINX pod, but will then be sent to the correct service based on the requested URL.
@@ -57,6 +61,7 @@ We will keep the nginx configuration data separate from the application code, in
 4) Finally, we will need these two services that are deployed internally in Kubernetes, to be exposed to the outside world. To do this, we will create an external service (Load Balancer) that will allow our NGINX pod to receive external requests.
 
 ***Service - Load Balancer***
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/247x292/46f5f7785cfa214d0b3b68f05fc211ce/loadbalancer_service.png)
 
 #### **Browser Request Flow through the Kubernetes Components**
