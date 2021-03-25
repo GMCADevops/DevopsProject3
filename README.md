@@ -58,7 +58,7 @@ It will then display the installed version of Aws-cli as an ansible variable.
 
 ![](https://i.gyazo.com/508abbde02cf6e3b9625a3827644bab6.png)
 
-<h2>Install configure and start jenkins:</h2>
+<h2>Install, configure and start jenkins:</h2>
 
 ![](https://i.gyazo.com/53be6f149a8c9739cb46e64290818a43.png)
 
