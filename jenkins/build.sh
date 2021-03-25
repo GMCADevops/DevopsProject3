@@ -1,6 +1,6 @@
 #!/bin/bash
 # build
-cd kubernetes # switch to the correct 
+cd app # switch to the correct 
 
   
 # Remove any previous locally built images 
