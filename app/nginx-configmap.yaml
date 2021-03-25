@@ -9,10 +9,7 @@ data:
       location / {
         proxy_pass http://frontend-service:3000;
       }
-      location /backend/users {
-        proxy_pass http://backend-service:8080/users;
-      }
-      location /backend/token {
-        proxy_pass http://backend-service:8080/token;
+      location /backend/ {
+        proxy_pass http://backend-service:8080/;
       }
     }
