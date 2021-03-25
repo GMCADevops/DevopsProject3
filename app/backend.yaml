@@ -1,4 +1,4 @@
-apiVersion: lastest
+apiVersion: latest
 kind: Deployment
 metadata:
   labels:
