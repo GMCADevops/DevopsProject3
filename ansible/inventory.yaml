@@ -2,10 +2,10 @@ all:
   children:
     localhost:
       hosts:
-        18.168.98.48: #Bastion Server
+        18.135.124.208: #Bastion Server
     ci-cd-server:
       hosts:      
-        18.168.115.5: #CI-CD Server 
+        18.168.96.98: #CI-CD Server 
     node-1:
       hosts:      
         10.154.0.27: #Node 1 
@@ -19,4 +19,4 @@ all:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: ubuntu #username if using jenkins use jenkins
     ansible_ssh_private_key_file: '~/.ssh/bastion.pem' # copied private rsa key from the bastion server
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q ubuntu@18.168.98.48"' # ssh proxy for user@bastion-ipip
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q ubuntu@18.135.124.208"' # ssh proxy for user@bastion-ip

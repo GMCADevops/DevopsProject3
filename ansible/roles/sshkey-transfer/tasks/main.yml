@@ -1,0 +1,14 @@
+- name: exchange sshkeys
+  host: localhost
+  become: yes
+  become_user: ubuntu
+  tasks:
+  - name: Fetch the keyfile from one server to another
+    ansible.builtin.fetch: 
+      src: "~/.ssh/bastion.pem"
+      dest: "buffer/bastion.pem"
+      flat: yes
+  - name: Copy the file from master to the destination
+    ansible.builtin.copy:
+      src: "buffer/bastion.pem"
+      dest: "~/.ssh/bastion.pem"
