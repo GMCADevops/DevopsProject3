@@ -113,15 +113,15 @@ It will then display the installed version of Aws-cli as an ansible variable.
 
 ![install jenkins](https://i.gyazo.com/53be6f149a8c9739cb46e64290818a43.png)
 
-### Retrive and display the jenkins init admin password:
+### Retrieve and display the jenkins init admin password:
 
 ![](https://i.gyazo.com/c49ae6d3892903fa98dbf30ff610b4ad.png)
 
-### Install aws-cli package:
+### Install aws-cli package :
 
 ![](https://i.gyazo.com/0717c68885d5346ad760c7127a86e3d5.png)
 
-### Checking  installed aws-cli package version:
+### Checking  installed aws-cli package version
 
 ![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
 
