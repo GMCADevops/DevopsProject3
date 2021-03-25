@@ -1,7 +1,7 @@
 resource "aws_instance" "jenkins" {
   ami           = "ami-0f387361de5dcb66d"
   instance_type = "t2.medium"
-  key_name      = "jenkins"
+  key_name      = "bastion"
   #user_data = "${file("install_jenkins.sh")}"
   
   network_interface {

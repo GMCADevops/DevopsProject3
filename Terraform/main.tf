@@ -91,3 +91,7 @@ module "subnet" {
   sec_group_id = module.vpc_instances.sec_group_id
   internet_gate = module.vpc.igw_id
 }
+
+output "bastion_public_ip" {
+  value = module.subnet.server_public_ip_bastion
+}

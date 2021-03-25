@@ -5,6 +5,6 @@
   shell: echo Hello from $(curl ifconfig.me)
   register: result
 
-- name: Print Bash Respone
+- name: Print Bash Response
   debug:
     var: result.stdout
