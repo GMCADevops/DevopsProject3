@@ -32,8 +32,6 @@ In this project jenkins was ultilised in an pipeline configuration with the use 
 ![](https://i.gyazo.com/0d2d5c644fe89ca6b6370048fc9dabed.png)
 ![](https://i.gyazo.com/b4c44f2fcf38bb4e09260fbd8cbb15a0.png)
 
-![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
-
 <h1>Declarative Checkout SCM</h1>
 
 ![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
