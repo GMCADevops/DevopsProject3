@@ -1,11 +1,11 @@
-# Terraform
 
-## What is terraform?
+
+### What is terraform?
 
 Terraform is a tool for building and changing infrastructure efficiently.
 It is probably the most common infrastructure as code tools, allowing you to describe using a high level configuration. All the infrastructure created can also be shared and reused.
 
-## Why did we use Terraform?
+### Why did we use Terraform?
 
 For this project, learning and using Terraform has been great, it's such an amazing tool, it makes creating and building infrastructure so much easier, this is one of the main reasons we decided to use it for this project.
 
@@ -33,7 +33,7 @@ $terraform apply
 $aws eks --region eu-west-2 update-kubeconfig --name my-cluster
 ```
 
-## possible issues
+### possible issues
 
 ```sh
 $rm ~/.kube/config

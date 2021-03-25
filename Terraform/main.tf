@@ -73,16 +73,6 @@ module "eks" {
   config_output_path = "./"
 }
 
-data "eks_node_groups" "foo" {
-  source  = "terraform-aws-modules/eks/aws//modules/node_groups"
-  version = "14.0.0"
-
-  filter {
-    name   = "private-ip"
-    values = [private_ip]
-  }
-}
-
 module "vpc_instances" {
   source = "./vpc"
   prod-vpc = module.vpc.vpc_id
@@ -108,8 +98,4 @@ output "bastion_public_ip" {
 
 output "jenkins_public_ip" {
   value = module.subnet.server_public_ip_jenkins
-}
-
-output "node_3_private_ip" {
-  value = module.eks.node_groups
 }
