@@ -1,3 +1,9 @@
+- name: copy local ssh-key bastion
+  become: true
+  hosts: localhost
+  roles:
+  - sshkey-transfer
+
 - name: install kubectl on the ci-cd server
   become: true
   hosts: ci-cd-server

@@ -95,3 +95,7 @@ module "subnet" {
 output "bastion_public_ip" {
   value = module.subnet.server_public_ip_bastion
 }
+
+output "jenkins_public_ip" {
+  value = module.subnet.server_public_ip_jenkins
+}
