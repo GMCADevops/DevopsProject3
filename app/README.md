@@ -11,6 +11,7 @@ We are going to deploy two applications using Kubernetes.
  
 
 1. **Frontend: React App**
+
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/1132x856/2405866736f821220b365ebe88e5c21c/frontend.png)
 
 2. **Backend: FastAPI App**
@@ -18,6 +19,21 @@ We are going to deploy two applications using Kubernetes.
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/895x337/a9d28f506a7c638b7542faaeac37adc0/FastAPI.png)
 
 > **How are we going to do it?**
+
+## **`Docker`** 
+
+1) We will build the images of our two applications using Docker & Docker-Compose.
+
+- **Dockerfiles**
+
+![Backend_frontend.png](https://trello-attachments.s3.amazonaws.com/605c628b987ff1717da58164/605c6297d563636cdd8f5519/553e55064c6d78c9cbf80f9d88c01676/Backend_frontend.png)
+
+- **Docker-compose.yaml**
+
+![enter image description here](https://trello-attachments.s3.amazonaws.com/605c628b987ff1717da58164/605c6297d563636cdd8f5519/6447a2ef7bed4368ce778d63a52d90a9/docker_compose_yaml.png)
+
+## **`Kubernetes`** 
+
 
 1) We will create a pod of the backend application:
 
@@ -64,7 +80,10 @@ We will keep the nginx configuration data separate from the application code, in
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/247x292/46f5f7785cfa214d0b3b68f05fc211ce/loadbalancer_service.png)
 
-#### **Browser Request Flow through the Kubernetes Components**
+![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/1200x628/e98b5d0d820c4b10aa7d6814c6261f24/summary.jpeg.jpg)
+
+
+## **`Browser Request Flow through the Kubernetes Components`**
 The request that will come from the browser, will go to the external service (Load Balancer) that will redirect it to the Nginx pod. The Nginx pod will send the request to the correct internal service (Frontend or Backend). From there, the request will be redirected to either the frontend or backend pod.
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/1200x625/b5bc874c13ebd0bea60270d0ddcb35c9/requestworkflow.png)
