@@ -1,5 +1,5 @@
 resource "aws_instance" "jenkins" {
-  ami           = "ami-070bc950a67c8d693"
+  ami           = "ami-0db487db8e3c29f06"
   instance_type = "t2.medium"
   key_name      = "bastion"
   #user_data = "${file("install_jenkins.sh")}"
@@ -11,6 +11,9 @@ resource "aws_instance" "jenkins" {
 
   credit_specification {
     cpu_credits = "unlimited"
+  }
+  tags = {
+    Name = "jenkins"
   }
 }
 
@@ -27,5 +30,8 @@ resource "aws_instance" "bastion" {
 
   credit_specification {
     cpu_credits = "unlimited"
+  }
+  tags = {
+    Name = "bastion"
   }
 }

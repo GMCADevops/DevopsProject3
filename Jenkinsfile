@@ -28,6 +28,7 @@ pipeline {
                 }
         stage("Deployment"){
             steps{
+                sh 'aws eks --region eu-west-2 update-kubeconfig --name my-cluster'
                 sh 'chmod +x jenkins/deployment.sh'
                 sh './jenkins/deployment.sh'
             }
