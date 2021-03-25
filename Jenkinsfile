@@ -17,8 +17,11 @@ pipeline {
                 steps{
                     script{
                             docker.withRegistry('', 'docker-hub-credentials'){
-                                sh "docker-compose push"
-                                sh "docker system prune -af"
+                                sh '''
+                                cd app
+                                docker-compose push
+                                docker system prune -af
+                                '''
                             }
                             
                         }
