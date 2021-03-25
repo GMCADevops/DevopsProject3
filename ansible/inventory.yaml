@@ -2,19 +2,19 @@ all:
   children:
     localhost:
       hosts:
-        18.135.124.208: #Bastion Server
+        {{ bastion_ip }}: #Bastion Server
     ci-cd-server:
       hosts:      
-        18.168.96.98: #CI-CD Server 
+         {{ ci-cd_ip }}: #CI-CD Server 
     node-1:
       hosts:      
-        10.154.0.27: #Node 1 
+        {{ node-1_ip }}: #Node 1 
     node-2:
       hosts:
-        10.154.0.25: #Node 2
+        {{ node-2_ip }}: #Node 2
     node-3:
       hosts:
-        10.154.0.28: #Node 3
+        {{ node-3_ip }}: #Node 3
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: ubuntu #username if using jenkins use jenkins
