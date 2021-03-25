@@ -1,4 +1,4 @@
-apiVersion: lastest
+apiVersion: latest
 kind: ConfigMap
 metadata:
   name: nginx-config
