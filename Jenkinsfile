@@ -1,9 +1,5 @@
 pipeline {
     agent any 
-    enviroment {
-        rootpass = credentials("rootpass")
-        SECRET_KEY = credentials("SECRET_KEY")
-    }
     stages{
         stage('testing'){
                 steps{
@@ -21,6 +17,7 @@ pipeline {
                             docker.withRegistry('', 'docker-hub-credentials'){
                                 sh "docker-compose push"
                                 sh "docker system prune -af"
+                            }
                             
                         }
                     }
