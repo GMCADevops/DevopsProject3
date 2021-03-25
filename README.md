@@ -16,7 +16,6 @@
 10. [Kubernetes](#Kubernetes)
 11. [Project Planning](#ProjectPlanning)
 12. [Budget](#budget)
-13. [Summary](#Summary)
 
 ![TeamAlpha](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/teamAlpha.png)
 
@@ -304,10 +303,6 @@ In the event that the request goes to the backend application (backend pod), thi
 ![Budget](https://i.gyazo.com/45bb9d61541a4958f36589cc00875467.png)
 
 The budget for this project was £20 for the week, this was easily met by maintaining all of our resources within terraform meaning at the end of the day we could pull them all down and at the start of the day we could quickly put them all back up.
-
-## Summary
-
-![Summary](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/summary.png)
 
 ## Project Planning
 
