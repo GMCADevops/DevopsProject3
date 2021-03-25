@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - image: andreatj/backend
+        name: backend
+        ports:
+        - containerPort: 8080
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: backend-service
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: backend
+ 
