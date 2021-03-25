@@ -1,21 +1,20 @@
 # DevOps-Project-3
 
-> Building upon the skills in projects 1 & 2, this time including: Terraform, Kubernetes & AWS.
-
 ## Tables of Contents
 
 1. [Scrum Roles](#ScrumRoles)
 2. [Scope](#Scope)
-3. [Requirements](#Requirements)
-4. [Workflows](#Workflows)
-5. [Scope](#Scope)
-6. [Ansible](#Ansible)
-7. [Jenkins](#Jenkins)
+3. [Workflows](#Workflows)
+4. [Requirements](#Requirements)
+5. [Project Planning](#ProjectPlanning)
+6. [Budget](#Budget)
+7. [Risk Assessment](#RiskAssessment)
 8. [Terraform](#Terraform)
-9. [Kubernetes](#Kubernetes)
-10. [Project Planning](#ProjectPlanning)
-11. [Risk Assessment](#RiskAssessment)
-12. [Budget](#budget)
+9. [Ansible](#Ansible)
+10. [Kubernetes](#Kubernetes)
+11. [Jenkins](#Jenkins)
+12. [Improvements](#Improvements)
+
 
 ![TeamAlpha](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/teamAlpha.png)
 
@@ -34,15 +33,126 @@ the frontend is using react and the backend is using python.
 
 This project should demonstrate a deployment process thats not dependant on the application thats being deployed.
 
+## Workflows
+
+For this project we all worked in an agile way assuming roles and having daily standup's, understanding the issues brought up in the standup was a major factor in us being able to succeed in this project. We also did a retrospective after this current sprint which was our only sprint, lasting 4 days with our project demo on the 5th day.
+
 ## Requirements
 
 To plan, design, and implement a solution for automating the development workflows and deployments of this application.
 
 ![DevOpsTools](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/DevOpsTools.png)
 
-## Workflows
+## Project Planning
 
-For this project we all worked in an agile way assuming roles and having daily standup's, understanding the issues brought up in the standup was a major factor in us being able to succeed in this project. We also did a retrospective after this current sprint which was our only sprint, lasting 4 days with our project demo on the 5th day.
+Using an agile board on Jira to manage product backlogs and keep the whole team aware of progression.
+
+![Kanban](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ProjectPlanning.png)
+
+## Contributors
+
+[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/)
+
+[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/)
+
+[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/)
+
+[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/)
+
+[Lee Ashworth](https://github.com/Leeroy2185)
+
+### notable mentions
+
+For support and help during during this project
+
+- The QA team
+
+## Budget
+
+![Budget](https://i.gyazo.com/45bb9d61541a4958f36589cc00875467.png)
+
+The budget for this project was £20 for the week, this was easily met by maintaining all of our resources within terraform meaning at the end of the day we could pull them all down and at the start of the day we could quickly put them all back up.
+
+## RiskAssessment
+
+![RiskAssessment](https://i.gyazo.com/cf20af6596ddcf2c8f6d0adf81368048.png)
+
+## Terraform
+
+### What is terraform?
+
+Terraform is a tool for building and changing infrastructure efficiently.
+It is probably the most common infrastructure as code tools, allowing you to describe using a high level configuration. All the infrastructure created can also be shared and reused.
+
+### Why did we use Terraform?
+
+For this project, learning and using Terraform has been great, it's such an amazing tool, it makes creating and building infrastructure so much easier, this is one of the main reasons we decided to use it for this project.
+
+and this should apply all of the infrastructures and build it on AWS.
+this takes about 15 minutes on average, but the great thing about Terraform is, it will save the current state, meaning you can change something and it will apply it without destroying all of the none affected files.
+For this project terraform was the first thing we worked on, having the infrastructure from the start allowed us to easily put up and take down the infrastructure when it wasn't being used.
+
+For Terraform, we wanted all of our infrastructure to be deployed with it, we wanted a k8 cluster with EKS and 2 instances with EC2 one for Jenkins and one for our bastion server.
+
+This would be done from any machine when logged into the correct IAM user with env variables we also can set up the bastion server to connect to the cluster.
+
+For the jenkins machine what we did was we using the current state of the machine with things installed and logged into the aws cli as an ami, meaning we could replicate it each time in a controlled manor
+
+``` sh
+$aws configure
+```
+
+```sh
+$terraform init
+```
+
+```sh
+$terraform apply
+```
+
+```sh
+$aws eks --region eu-west-2 update-kubeconfig --name my-cluster
+```
+
+### possible issues
+
+```sh
+$rm ~/.kube/config
+```
+
+```sh
+$terraform state list | grep auth
+```
+
+```sh
+$terraform state rm <thing>
+```
+
+applying infrastructure changes is fast and simple when using terraform
+
+![Terraform image1](https://i.gyazo.com/e401c6dfcd8aab8aeac859c74fd7fcbd.png)
+
+Another reason why we used terraform is the fact the it knows its own state, which means when applying new infrastructure it will replace and tear down the old infrastructure. this also means when you make changes you don't need to wait for the whole infrastructure to tear down you can just apply new infrastructure.
+
+When something isn't working you can also use the command:
+
+```sh
+$terraform taint
+```
+
+Which then allows you to taint the resource that isn't working to tear it down and then apply it again, this as a whole saves a lot of time as you don't need to destroy everything each time.
+
+## What we did with Terraform
+
+some of the notable things we used Terraform for is for our k8 cluster, our jenkins CI server and finally the bastion server.
+
+![k8 image](https://i.gyazo.com/cd794f159b6ec823c1bfa2ccdb6fcd92.png)
+
+For the Jenkins server we also used custom images to allow us to retain the jenkins install as well as our pipeline and user accounts. The reason we did this is if the ec2 instance failed and we would need to re-deploy, this would be a quick simple fix. We also hope to automate this process by using snapshots of the instance and feeding them back into terraform with image versions.
+
+![Jenkins image](https://i.gyazo.com/640cdced80519b018b0b4195b6f06e66.png)
+
+The final thing we did with Terraform was something we could have done with ansible, but we decided it would be best to do with terraform. This was install jenkins, docker and finally adding them to the jenkins user. This script is now not very useful as this allow us to save a snapshot and turn that into an image we are now using.
 
 ## Ansible
 
@@ -123,138 +233,6 @@ It will then display the installed version of Aws-cli as an ansible variable.
 ### Checking  installed aws-cli package version
 
 ![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
-
-## Jenkins
-![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
-
-Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery. 
-
-It is a agent-based system that runs in servlet containers such as Apache Tomcat, it supports version control tools including AccuRev, CVS, Subversion and Git, jenkins can execute arbitrary shell scripts and Windows batch commands.
-
-In this project jenkins was ultilised in an pipeline configuration with the use of github webhooks to orchestrate every step of automated product deployment, these stages were:
-
-<br>
-
-![](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
-
-<br>
-
-• Declarative Checkout SCM - The first stage triggered by a webhook is the source code management acquisition where jenkins will create a blank workspace and navigate to the github url repository clone it, switch into it and then checkout to the specified branch.
-<br>
-<br>
-• Testing - The second stage is the application testing stage where both the front-end and back-end will be testing using the specified bash testing script, test files and test tool.
-<br>
-<br>
-• Build Images - The third stage is the dockerization of the front-end and the back-end using the docker-compose.yaml to build the contents into a snapshop image with all the required dependencies to deploy the application as a container or pod.  
-<br>
-• Push - The fourth stage push`s the docker images built in the previous stage to dockerhub. 
-<br>
-<br>
-• Deployment - The fifth and final stage of the pipeline is to pulldown the previously built docker images from dockerhub, then deploy them in the terraform built kubernetes cluster using the bash deployment.sh script.
-<br>
-<br>
-
-<h1>Successful Pipeline build via github webhooks</h1>
-
-![](https://i.gyazo.com/0d2d5c644fe89ca6b6370048fc9dabed.png)
-![](https://i.gyazo.com/b4c44f2fcf38bb4e09260fbd8cbb15a0.png)
-
-<h1>Declarative Checkout SCM</h1>
-
-![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
-
-<h1>Testing</h1>
-
-![](https://i.gyazo.com/08875b0a04470758d4178e21ae3624ed.png)
-
-<h1>Build Images</h1>
-
-![](https://i.gyazo.com/7992a8948da0a7e8ddfc96539769477a.png)
-
-<h1>Push</h1>
-
-![](https://i.gyazo.com/ec7ffb403425e1e7a5f9def2d4d8221e.png)
-
-<h1>Deployment</h1>
-
-![](https://i.gyazo.com/1280f6c653d0ddf1563875cf4f95227e.png)
-
-## Terraform
-
-### What is terraform?
-
-Terraform is a tool for building and changing infrastructure efficiently.
-It is probably the most common infrastructure as code tools, allowing you to describe using a high level configuration. All the infrastructure created can also be shared and reused.
-
-### Why did we use Terraform?
-
-For this project, learning and using Terraform has been great, it's such an amazing tool, it makes creating and building infrastructure so much easier, this is one of the main reasons we decided to use it for this project.
-
-and this should apply all of the infrastructures and build it on AWS.
-this takes about 15 minutes on average, but the great thing about Terraform is, it will save the current state, meaning you can change something and it will apply it without destroying all of the none affected files.
-For this project terraform was the first thing we worked on, having the infrastructure from the start allowed us to easily put up and take down the infrastructure when it wasn't being used.
-
-For Terraform, we wanted all of our infrastructure to be deployed with it, we wanted a k8 cluster with EKS and 2 instances with EC2 one for Jenkins and one for our bastion server.
-
-This would be done from any machine when logged into the correct IAM user with env variables we also can set up the bastion server to connect to the cluster.
-
-For the jenkins machine what we did was we using the current state of the machine with things installed and logged into the aws cli as an ami, meaning we could replicate it each time in a controlled manor
-
-``` sh
-$aws configure
-```
-
-```sh
-$terraform init
-```
-
-```sh
-$terraform apply
-```
-
-```sh
-$aws eks --region eu-west-2 update-kubeconfig --name my-cluster
-```
-
-### possible issues
-
-```sh
-$rm ~/.kube/config
-```
-
-```sh
-$terraform state list | grep auth
-```
-
-```sh
-$terraform state rm <thing>
-```
-
-applying infrastructure changes is fast and simple when using terraform
-
-![Terraform image1](https://i.gyazo.com/e401c6dfcd8aab8aeac859c74fd7fcbd.png)
-
-Another reason why we used terraform is the fact the it knows its own state, which means when applying new infrastructure it will replace and tear down the old infrastructure. this also means when you make changes you don't need to wait for the whole infrastructure to tear down you can just apply new infrastructure.
-
-When something isn't working you can also use the command:
-
-```sh
-$terraform taint
-```
-
-Which then allows you to taint the resource that isn't working to tear it down and then apply it again, this as a whole saves a lot of time as you don't need to destroy everything each time.
-
-## What we did with Terraform
-
-some of the notable things we used Terraform for is for our k8 cluster, our jenkins CI server and finally the bastion server.
-
-![k8 image](https://i.gyazo.com/cd794f159b6ec823c1bfa2ccdb6fcd92.png)
-
-For the Jenkins server we also used custom images to allow us to retain the jenkins install as well as our pipeline and user accounts. The reason we did this is if the ec2 instance failed and we would need to re-deploy, this would be a quick simple fix. We also hope to automate this process by using snapshots of the instance and feeding them back into terraform with image versions.
-
-![Jenkins image](https://i.gyazo.com/640cdced80519b018b0b4195b6f06e66.png)
-
-The final thing we did with Terraform was something we could have done with ansible, but we decided it would be best to do with terraform. This was install jenkins, docker and finally adding them to the jenkins user. This script is now not very useful as this allow us to save a snapshot and turn that into an image we are now using.
 
 ## Kubernetes
 
@@ -343,39 +321,60 @@ The request that will come from the browser, will go to the external service (Lo
 
 In the event that the request goes to the backend application (backend pod), this pod will also communicate with a database that will be hosted on Amazon RDS.
 
-## RiskAssessment
+## Jenkins
+![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
-![RiskAssessment](https://i.gyazo.com/cf20af6596ddcf2c8f6d0adf81368048.png)
+Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery. 
 
-## Budget
+It is a agent-based system that runs in servlet containers such as Apache Tomcat, it supports version control tools including AccuRev, CVS, Subversion and Git, jenkins can execute arbitrary shell scripts and Windows batch commands.
 
-![Budget](https://i.gyazo.com/45bb9d61541a4958f36589cc00875467.png)
+In this project jenkins was ultilised in an pipeline configuration with the use of github webhooks to orchestrate every step of automated product deployment, these stages were:
 
-The budget for this project was £20 for the week, this was easily met by maintaining all of our resources within terraform meaning at the end of the day we could pull them all down and at the start of the day we could quickly put them all back up.
+<br>
 
-## Project Planning
+![](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
-Using an agile board on Jira to manage product backlogs and keep the whole team aware of progression.
+<br>
 
-![Kanban](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ProjectPlanning.png)
+• Declarative Checkout SCM - The first stage triggered by a webhook is the source code management acquisition where jenkins will create a blank workspace and navigate to the github url repository clone it, switch into it and then checkout to the specified branch.
+<br>
+<br>
+• Testing - The second stage is the application testing stage where both the front-end and back-end will be testing using the specified bash testing script, test files and test tool.
+<br>
+<br>
+• Build Images - The third stage is the dockerization of the front-end and the back-end using the docker-compose.yaml to build the contents into a snapshop image with all the required dependencies to deploy the application as a container or pod.  
+<br>
+• Push - The fourth stage push`s the docker images built in the previous stage to dockerhub. 
+<br>
+<br>
+• Deployment - The fifth and final stage of the pipeline is to pulldown the previously built docker images from dockerhub, then deploy them in the terraform built kubernetes cluster using the bash deployment.sh script.
+<br>
+<br>
 
-## Contributors
+<h1>Successful Pipeline build via github webhooks</h1>
 
-[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/)
+![](https://i.gyazo.com/0d2d5c644fe89ca6b6370048fc9dabed.png)
+![](https://i.gyazo.com/b4c44f2fcf38bb4e09260fbd8cbb15a0.png)
 
-[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/)
+<h1>Declarative Checkout SCM</h1>
 
-[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/)
+![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
 
-[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/)
+<h1>Testing</h1>
 
-[Lee Ashworth](https://github.com/Leeroy2185)
+![](https://i.gyazo.com/08875b0a04470758d4178e21ae3624ed.png)
 
-### notable mentions
+<h1>Build Images</h1>
 
-for support and help during during this project
+![](https://i.gyazo.com/7992a8948da0a7e8ddfc96539769477a.png)
 
-- The QA team
+<h1>Push</h1>
+
+![](https://i.gyazo.com/ec7ffb403425e1e7a5f9def2d4d8221e.png)
+
+<h1>Deployment</h1>
+
+![](https://i.gyazo.com/1280f6c653d0ddf1563875cf4f95227e.png)
 
 ## Improvements
 
@@ -386,3 +385,4 @@ We were hoping to automated as much as possible within this project, one of the 
 For another future improvement we would liked to have tested the application before pushing the application but this was an external application with no tests for it, and with a very limited time frame testing wasn't an option we could do.
 
 Finally we would have liked to automate ansible for configuration, we decided later in the project that we wouldn't need ansible but we hoped we could still use it. The problem came when we realised the infrastructure in Terraform wouldn't support outputting private ip address' of an eks cluster by design.
+
