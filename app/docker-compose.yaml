@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  backend:
+    image: andreatj/backend
+    build: ./backend
+    ports: 
+    - target: 8080
+      published: 8080
+  
+  frontend:
+    image: andreatj/frontend
+    build: ./frontend
+    stdin_open: true
+    tty: true
+    ports: 
+    - target: 3000
+      published: 3000
