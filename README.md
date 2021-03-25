@@ -43,7 +43,7 @@ To plan, design, and implement a solution for automating the development workflo
 
 ![DevOpsTools](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/DevOpsTools.png)
 
-## Project Planning
+## ProjectPlanning
 
 Using an agile board on Jira to manage product backlogs and keep the whole team aware of progression.
 
