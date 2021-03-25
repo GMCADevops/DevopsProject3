@@ -268,26 +268,26 @@ We are going to deploy two applications using Kubernetes.
 
 ## **`Kubernetes`**
 
-1) We will create a pod of the backend application:
+1) We will create a deployment/pod of the backend application:
 
 ***Deployment / Pod - Backend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/384x499/d7b7f65ed0c7e1ad3fb1b6c3940cbb72/backend_pod.png)
 
-In order for this pod to communicate with the rest of the components of the cluster, we will create an internal service called backend-service.
+In order for this deployment to communicate continuously with the rest of the components of the cluster, we will create an internal service called backend-service.
 
 ***Service - Backend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/282x288/26e92c5efc71b5eff289982ca3ed66af/backend_service.png)
 
 
-2) We will do the same with our frontend application. Firstly, we will create a pod: 
+2) We will do the same with our frontend application. Firstly, we will create a deployment/pod: 
 
 ***Deployment / Pod - Frontend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/378x559/914654b19c4654b2b0477cce6db7f683/frontend_pod.png)
 
-Secondly, we will create an internal service (frontend - service) to allow this pod to communicate with the rest of the cluster.
+Secondly, we will create an internal service (frontend - service). 
 
 ***Service - Frontend***
 
