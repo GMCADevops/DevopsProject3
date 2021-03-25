@@ -131,6 +131,7 @@ It will then display the installed version of Aws-cli as an ansible variable.
 ![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
 
 ## Jenkins
+![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
 ## Terraform
 
