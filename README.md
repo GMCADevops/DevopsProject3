@@ -1,5 +1,7 @@
 # DevOps-Project-3
 
+https://team-1616393125888.atlassian.net/jira/software/projects/DEV/boards/1
+
 ## Tables of Contents
 
 1. [Scrum Roles](#ScrumRoles)
