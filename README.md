@@ -8,14 +8,13 @@
 2. [Scope](#Scope)
 3. [Requirements](#Requirements)
 4. [Workflows](#Workflows)
-5. [Requests](#Requests)
-6. [Scope](#Scope)
-7. [Ansible](#Ansible)
-8. [Jenkins](#Jenkins)
-9. [Terraform](#Terraform)
-10. [Kubernetes](#Kubernetes)
-11. [Project Planning](#ProjectPlanning)
-12. [Budget](#budget)
+5. [Scope](#Scope)
+6. [Ansible](#Ansible)
+7. [Jenkins](#Jenkins)
+8. [Terraform](#Terraform)
+9. [Kubernetes](#Kubernetes)
+10. [Project Planning](#ProjectPlanning)
+11. [Budget](#budget)
 
 ![TeamAlpha](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/teamAlpha.png)
 
@@ -43,10 +42,6 @@ To plan, design, and implement a solution for automating the development workflo
 ## Workflows
 
 For this project we all worked in an agile way assuming roles and having daily standup's, understanding the issues brought up in the standup was a major factor in us being able to succeed in this project. We also did a retrospective after this current sprint which was our only sprint, lasting 4 days with our project demo on the 5th day.
-
-### Requests
-
-![RequestsWorkflows](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/requestworkflow.png)
 
 ## Ansible
 
