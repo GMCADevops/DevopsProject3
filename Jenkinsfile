@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     stages{
-        stage('testing'){
+        stage('Testing'){
                 steps{
                     sh 'chmod +x jenkins/testing.sh'
                     sh './jenkins/testing.sh'
