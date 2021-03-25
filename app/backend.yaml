@@ -34,5 +34,4 @@ spec:
     targetPort: 8080
   selector:
     app: backend
-  type: LoadBalancer
  
