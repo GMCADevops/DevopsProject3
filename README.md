@@ -53,15 +53,15 @@ Using an agile board on Jira to manage product backlogs and keep the whole team 
 
 ## Contributors
 
-[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/)
+[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/) - Project Manager
 
-[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/)
+[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/) - Development Team
 
-[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/)
+[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/) - Development Team
 
-[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/)
+[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/) - Product Owner
 
-[Lee Ashworth](https://github.com/Leeroy2185)
+[Lee Ashworth](https://github.com/Leeroy2185) - Scrum Master
 
 ### notable mentions
 
