@@ -73,6 +73,8 @@ module "eks" {
   config_output_path = "./"
 }
 
+
+
 module "vpc_instances" {
   source = "./vpc"
   prod-vpc = module.vpc.vpc_id
