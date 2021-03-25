@@ -46,8 +46,6 @@ For this project we all worked in an agile way assuming roles and having daily s
 
 ## Ansible
 
-![AnsibleWorkflows](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ansibleworkflow.png)
-
 
 <br>
 
