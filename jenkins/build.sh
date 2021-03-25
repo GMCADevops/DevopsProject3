@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# build
 cd kubernetes # switch to the correct 
 
   
