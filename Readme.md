@@ -12,7 +12,7 @@ In this project jenkins was ultilised in an pipeline configuration with the use 
 
 <br>
 
-• Declarative Checkout SCM - The first stage is the source code management acquisition where jenkins will create a blank workspace and navigate to the github url repository clone it, switch into it and then checkout to the specified branch.
+• Declarative Checkout SCM - The first stage triggered by a webhook is the source code management acquisition where jenkins will create a blank workspace and navigate to the github url repository clone it, switch into it and then checkout to the specified branch.
 <br>
 <br>
 • Testing - The second stage is the application testing stage where both the front-end and back-end will be testing using the specified bash testing script, test files and test tool.
@@ -27,9 +27,10 @@ In this project jenkins was ultilised in an pipeline configuration with the use 
 <br>
 <br>
 
-<h1>Successful Pipeline built via github webhooks</h1>
+<h1>Successful Pipeline build via github webhooks</h1>
 
-![]()
+![](https://i.gyazo.com/0d2d5c644fe89ca6b6370048fc9dabed.png)
+![](https://i.gyazo.com/b4c44f2fcf38bb4e09260fbd8cbb15a0.png)
 
 ![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
 
