@@ -22,11 +22,12 @@ pipeline {
                         }
                     }
                 }
-            }
         stage("Deployment"){
             steps{
                 sh './jenkins/deployment.sh'
             }
         }
+        
     }
+    
 }
