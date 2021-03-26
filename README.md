@@ -1,20 +1,22 @@
 # DevOps-Project-3
 
-> Building upon the skills in projects 1 & 2, this time including: Terraform, Kubernetes & AWS.
+https://team-1616393125888.atlassian.net/jira/software/projects/DEV/boards/1
 
 ## Tables of Contents
 
 1. [Scrum Roles](#ScrumRoles)
 2. [Scope](#Scope)
-3. [Requirements](#Requirements)
-4. [Workflows](#Workflows)
-5. [Scope](#Scope)
-6. [Ansible](#Ansible)
-7. [Jenkins](#Jenkins)
+3. [Workflows](#Workflows)
+4. [Requirements](#Requirements)
+5. [Project Planning](#ProjectPlanning)
+6. [Budget](#Budget)
+7. [Risk Assessment](#RiskAssessment)
 8. [Terraform](#Terraform)
-9. [Kubernetes](#Kubernetes)
-10. [Project Planning](#ProjectPlanning)
-11. [Budget](#budget)
+9. [Ansible](#Ansible)
+10. [Kubernetes](#Kubernetes)
+11. [Jenkins](#Jenkins)
+12. [Improvements](#Improvements)
+
 
 ![TeamAlpha](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/teamAlpha.png)
 
@@ -33,100 +35,49 @@ the frontend is using react and the backend is using python.
 
 This project should demonstrate a deployment process thats not dependant on the application thats being deployed.
 
+## Workflows
+
+For this project we all worked in an agile way assuming roles and having daily standup's, understanding the issues brought up in the standup was a major factor in us being able to succeed in this project. We also did a retrospective after this current sprint which was our only sprint, lasting 4 days with our project demo on the 5th day.
+
 ## Requirements
 
 To plan, design, and implement a solution for automating the development workflows and deployments of this application.
 
 ![DevOpsTools](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/DevOpsTools.png)
 
-## Workflows
+## ProjectPlanning
 
-For this project we all worked in an agile way assuming roles and having daily standup's, understanding the issues brought up in the standup was a major factor in us being able to succeed in this project. We also did a retrospective after this current sprint which was our only sprint, lasting 4 days with our project demo on the 5th day.
+Using an agile board on Jira to manage product backlogs and keep the whole team aware of progression.
 
-## Ansible
+![Kanban](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ProjectPlanning.png)
 
-![AnsibleWorkflows](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ansibleworkflow.png)
+## Contributors
 
+[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/) - Project Manager
 
-<br>
+[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/) - Development Team
 
-Ansible is an open-soruce agentless configureation management and application-deployment tool enabling infrastructure as code.
-<br>
+[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/) - Development Team
 
-In this project we primary used ansible to configure all of our virtual machines by installing crucial packages, we achieved this by ssh proxying through our bastion server so ansible could security access all the virtual machines in the infrastructure network and configure them accordingly.  
-<br>
-We achieve the ssh proxy through the bastion server from our local machine by setting an ansible variable that specifies the location of the private ssh bastion key on our local machine, then by using the follow ansible command string:
-<br>
-<br>
+[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/) - Product Owner
 
-```sh
-ProxyCommand="ssh -W %h:%p -q user@bastion ip address"
-```
-<br>
-<br>
-This command allows us to proxy ssh through the specified bastion ip address as the specified user on the condition that we have the correct path for the private key of the bastion server set as a variable.
-<br>
-<br>
+[Lee Ashworth](https://github.com/Leeroy2185) - Scrum Master
 
-<h2> Ansible infrastructure diagram:</h2>
+### notable mentions
 
-![](https://i.gyazo.com/71dc632d80a2600b0d27cbad32d82926.png)
+For support and help during during this project
 
-We used ansible galaxy roles to define our configuration settings the roles used were:
+- The QA team
 
-• Ping - The ping role is configured to ping the ansible host and check for the response "pong" and a hello from "external ip address of host" to display via ansible variable, This will confirm the successful exchange of packets and access to the virtual machine bash shell.
-<br>
-<br>
-• Kubectl - The kubectl role is configured to install the kubernetes kubectl package on each cluster node as well as the ci-cd server to allow infrastructure wide kubernetes cluster access management.
-It will then display the installed version of kubectl as an ansible variable.
-<br>
-<br>
-• Aws-cli - The Aws-cli role is configured to install the amazon-web-services command line interface onto the ci-cd server to allow programmatic access via iam user to the virtual private cloud(vpc).
-It will then display the installed version of Aws-cli as an ansible variable.
-<br>
-<br>
-• Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
-<br>
-<br>
+## Budget
 
-### Pinging for packet exchange:
+![Budget](https://i.gyazo.com/45bb9d61541a4958f36589cc00875467.png)
 
-![](https://i.gyazo.com/9dc5dd7675f59e7c74c8573402c2a362.png)
+The budget for this project was £20 for the week, this was easily met by maintaining all of our resources within terraform meaning at the end of the day we could pull them all down and at the start of the day we could quickly put them all back up.
 
-### Checking bash shell access:
+## RiskAssessment
 
-![](https://i.gyazo.com/98536edf02041b8cfa018ff07a1dff0f.png)
-
-### Install kubectl package:
-
-![kube install](https://i.gyazo.com/f86737e01cd03cd7f01234928c8bac5d.png)
-
-### Checking installed kubectl package version:
-
-![kube version](https://i.gyazo.com/cb59342797904d3b35907acf238358f8.png)
-
-### Installing java openjdk dependency package:
-
-![install java](https://i.gyazo.com/508abbde02cf6e3b9625a3827644bab6.png)
-
-### Install, configure and start jenkins
-
-![install jenkins](https://i.gyazo.com/53be6f149a8c9739cb46e64290818a43.png)
-
-### Retrive and display the jenkins init admin password:
-
-![](https://i.gyazo.com/c49ae6d3892903fa98dbf30ff610b4ad.png)
-
-### Install aws-cli package:
-
-![](https://i.gyazo.com/0717c68885d5346ad760c7127a86e3d5.png)
-
-### Checking  installed aws-cli package version:
-
-![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
-
-## Jenkins
-![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
+![RiskAssessment](https://i.gyazo.com/cf20af6596ddcf2c8f6d0adf81368048.png)
 
 ## Terraform
 
@@ -205,6 +156,86 @@ For the Jenkins server we also used custom images to allow us to retain the jenk
 
 The final thing we did with Terraform was something we could have done with ansible, but we decided it would be best to do with terraform. This was install jenkins, docker and finally adding them to the jenkins user. This script is now not very useful as this allow us to save a snapshot and turn that into an image we are now using.
 
+## Ansible
+
+
+<br>
+
+Ansible is an open-soruce agentless configureation management and application-deployment tool enabling infrastructure as code.
+<br>
+
+In this project we primary used ansible to configure all of our virtual machines by installing crucial packages, we achieved this by ssh proxying through our bastion server so ansible could security access all the virtual machines in the infrastructure network and configure them accordingly.  
+<br>
+We achieve the ssh proxy through the bastion server from our local machine by setting an ansible variable that specifies the location of the private ssh bastion key on our local machine, then by using the follow ansible command string:
+<br>
+<br>
+
+```sh
+ProxyCommand="ssh -W %h:%p -q user@bastion ip address"
+```
+<br>
+<br>
+This command allows us to proxy ssh through the specified bastion ip address as the specified user on the condition that we have the correct path for the private key of the bastion server set as a variable.
+<br>
+<br>
+
+<h2> Ansible infrastructure diagram:</h2>
+
+![](https://i.gyazo.com/71dc632d80a2600b0d27cbad32d82926.png)
+
+We used ansible galaxy roles to define our configuration settings the roles used were:
+
+• Ping - The ping role is configured to ping the ansible host and check for the response "pong" and a hello from "external ip address of host" to display via ansible variable, This will confirm the successful exchange of packets and access to the virtual machine bash shell.
+<br>
+<br>
+• Kubectl - The kubectl role is configured to install the kubernetes kubectl package on each cluster node as well as the ci-cd server to allow infrastructure wide kubernetes cluster access management.
+It will then display the installed version of kubectl as an ansible variable.
+<br>
+<br>
+• Aws-cli - The Aws-cli role is configured to install the amazon-web-services command line interface onto the ci-cd server to allow programmatic access via iam user to the virtual private cloud(vpc).
+It will then display the installed version of Aws-cli as an ansible variable.
+<br>
+<br>
+• Jenkins - The jenkins role is configured to install the java openjdk dependency package then install, start and display the init admin password for jenkins as an ansible variable.
+<br>
+<br>
+
+### Pinging for packet exchange:
+
+![](https://i.gyazo.com/9dc5dd7675f59e7c74c8573402c2a362.png)
+
+### Checking bash shell access:
+
+![](https://i.gyazo.com/98536edf02041b8cfa018ff07a1dff0f.png)
+
+### Install kubectl package:
+
+![kube install](https://i.gyazo.com/f86737e01cd03cd7f01234928c8bac5d.png)
+
+### Checking installed kubectl package version:
+
+![kube version](https://i.gyazo.com/cb59342797904d3b35907acf238358f8.png)
+
+### Installing java openjdk dependency package:
+
+![install java](https://i.gyazo.com/508abbde02cf6e3b9625a3827644bab6.png)
+
+### Install, configure and start jenkins
+
+![install jenkins](https://i.gyazo.com/53be6f149a8c9739cb46e64290818a43.png)
+
+### Retrieve and display the jenkins init admin password:
+
+![](https://i.gyazo.com/c49ae6d3892903fa98dbf30ff610b4ad.png)
+
+### Install aws-cli package :
+
+![](https://i.gyazo.com/0717c68885d5346ad760c7127a86e3d5.png)
+
+### Checking  installed aws-cli package version
+
+![](https://i.gyazo.com/c44af90b2e7395afa26266251e4fa5df.png)
+
 ## Kubernetes
 
 Kubernetes is an open-source container orchestration platform that automates many of the manual processes involved in deploying, managing, and scaling containerized applications.
@@ -237,26 +268,26 @@ We are going to deploy two applications using Kubernetes.
 
 ## **`Kubernetes`**
 
-1) We will create a pod of the backend application:
+1) We will create a deployment/pod of the backend application:
 
 ***Deployment / Pod - Backend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/384x499/d7b7f65ed0c7e1ad3fb1b6c3940cbb72/backend_pod.png)
 
-In order for this pod to communicate with the rest of the components of the cluster, we will create an internal service called backend-service.
+In order for this deployment to communicate continuously with the rest of the components of the cluster, we will create an internal service called backend-service.
 
 ***Service - Backend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/282x288/26e92c5efc71b5eff289982ca3ed66af/backend_service.png)
 
 
-2) We will do the same with our frontend application. Firstly, we will create a pod: 
+2) We will do the same with our frontend application. Firstly, we will create a deployment/pod: 
 
 ***Deployment / Pod - Frontend***
 
 ![enter image description here](https://trello-attachments.s3.amazonaws.com/605c6297d563636cdd8f5519/378x559/914654b19c4654b2b0477cce6db7f683/frontend_pod.png)
 
-Secondly, we will create an internal service (frontend - service) to allow this pod to communicate with the rest of the cluster.
+Secondly, we will create an internal service (frontend - service). 
 
 ***Service - Frontend***
 
@@ -292,37 +323,60 @@ The request that will come from the browser, will go to the external service (Lo
 
 In the event that the request goes to the backend application (backend pod), this pod will also communicate with a database that will be hosted on Amazon RDS.
 
+## Jenkins
+![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
+Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery. 
 
-## Budget
+It is a agent-based system that runs in servlet containers such as Apache Tomcat, it supports version control tools including AccuRev, CVS, Subversion and Git, jenkins can execute arbitrary shell scripts and Windows batch commands.
 
-![Budget](https://i.gyazo.com/45bb9d61541a4958f36589cc00875467.png)
+In this project jenkins was ultilised in an pipeline configuration with the use of github webhooks to orchestrate every step of automated product deployment, these stages were:
 
-The budget for this project was £20 for the week, this was easily met by maintaining all of our resources within terraform meaning at the end of the day we could pull them all down and at the start of the day we could quickly put them all back up.
+<br>
 
-## Project Planning
+![](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
-Using an agile board on Jira to manage product backlogs and keep the whole team aware of progression.
+<br>
 
-![Kanban](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/ProjectPlanning.png)
+• Declarative Checkout SCM - The first stage triggered by a webhook is the source code management acquisition where jenkins will create a blank workspace and navigate to the github url repository clone it, switch into it and then checkout to the specified branch.
+<br>
+<br>
+• Testing - The second stage is the application testing stage where both the front-end and back-end will be testing using the specified bash testing script, test files and test tool.
+<br>
+<br>
+• Build Images - The third stage is the dockerization of the front-end and the back-end using the docker-compose.yaml to build the contents into a snapshop image with all the required dependencies to deploy the application as a container or pod.  
+<br>
+• Push - The fourth stage push`s the docker images built in the previous stage to dockerhub. 
+<br>
+<br>
+• Deployment - The fifth and final stage of the pipeline is to pulldown the previously built docker images from dockerhub, then deploy them in the terraform built kubernetes cluster using the bash deployment.sh script.
+<br>
+<br>
 
-## Contributors
+<h1>Successful Pipeline build via github webhooks</h1>
 
-[Jack Pendlebury](https://www.linkedin.com/in/jack-pendlebury-803736152/)
+![](https://i.gyazo.com/0d2d5c644fe89ca6b6370048fc9dabed.png)
+![](https://i.gyazo.com/b4c44f2fcf38bb4e09260fbd8cbb15a0.png)
 
-[Andrea Torres](https://www.linkedin.com/in/andrea-torres-j/)
+<h1>Declarative Checkout SCM</h1>
 
-[Dale Walker](https://www.linkedin.com/in/dale-walker-b4b8b0209/)
+![](https://i.gyazo.com/ec7fc30ab070a2d28611d52b48e7e5a7.png)
 
-[Bilal Shafiq](https://www.linkedin.com/in/bilal-shafiq-35202b201/)
+<h1>Testing</h1>
 
-[Lee Ashworth](https://github.com/Leeroy2185)
+![](https://i.gyazo.com/08875b0a04470758d4178e21ae3624ed.png)
 
-### notable mentions
+<h1>Build Images</h1>
 
-for support and help during during this project
+![](https://i.gyazo.com/7992a8948da0a7e8ddfc96539769477a.png)
 
-- The QA team
+<h1>Push</h1>
+
+![](https://i.gyazo.com/ec7ffb403425e1e7a5f9def2d4d8221e.png)
+
+<h1>Deployment</h1>
+
+![](https://i.gyazo.com/1280f6c653d0ddf1563875cf4f95227e.png)
 
 ## Improvements
 
@@ -333,3 +387,4 @@ We were hoping to automated as much as possible within this project, one of the 
 For another future improvement we would liked to have tested the application before pushing the application but this was an external application with no tests for it, and with a very limited time frame testing wasn't an option we could do.
 
 Finally we would have liked to automate ansible for configuration, we decided later in the project that we wouldn't need ansible but we hoped we could still use it. The problem came when we realised the infrastructure in Terraform wouldn't support outputting private ip address' of an eks cluster by design.
+
