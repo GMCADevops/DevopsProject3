@@ -165,7 +165,7 @@ $terraform apply
 $aws eks --region eu-west-2 update-kubeconfig --name my-cluster
 ```
 
-### possible issues
+### possible issues.
 
 ```sh
 $rm ~/.kube/config
