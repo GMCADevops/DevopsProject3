@@ -189,7 +189,7 @@ We used ansible galaxy roles to define our configuration settings the roles used
 <br>
 <br>
 • Kubectl - The kubectl role is configured to install the kubernetes kubectl package on each cluster node as well as the ci-cd server to allow infrastructure wide kubernetes cluster access management.
-It will then display the installed version of kubectl as an ansible variable...
+It will then display the installed version of kubectl as an ansible variable....
 <br>
 <br>
 • Aws-cli - The Aws-cli role is configured to install the amazon-web-services command line interface onto the ci-cd server to allow programmatic access via iam user to the virtual private cloud(vpc).
