@@ -324,7 +324,6 @@ The request that will come from the browser, will go to the external service (Lo
 In the event that the request goes to the backend application (backend pod), this pod will also communicate with a database that will be hosted on Amazon RDS.
 
 ## Jenkins
-![Jenkins](https://github.com/GMCADevops/DevopsProject3/blob/Documentation/images/JenkinsPipeline.png)
 
 Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery. 
 
